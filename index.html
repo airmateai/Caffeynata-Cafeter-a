@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caffé & Nata — Con sabor a tradición | Quito, Ecuador</title>
+  <meta name="description" content="Cafetería Caffé y Nata en Quito desde 2008. Desayunos, chocolates especiales, sándwiches artesanales y más. Abierto desde las 7am. +593 99 961 7417" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark:  #3b2212;
+      --brown-mid:   #6b3a1f;
+      --orange:      #d4772a;
+      --orange-warm: #e8973a;
+      --cream:       #fdf6ed;
+      --cream-dark:  #f5e9d6;
+      --text:        #2a1a0a;
+      --text-light:  #6b5a47;
+      --white:       #ffffff;
+      --radius:      12px;
+      --shadow:      0 8px 40px rgba(59,34,18,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(59,34,18,.92);
+      backdrop-filter: blur(10px);
+    }
+    nav .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    nav .nav-links { display: flex; gap: 28px; list-style: none; }
+    nav .nav-links a { color: var(--cream); font-size: .88rem; font-weight: 500; text-decoration: none; opacity: .85; transition: opacity .2s; }
+    nav .nav-links a:hover { opacity: 1; color: var(--orange-warm); }
+    nav .nav-cta {
+      background: var(--orange); color: var(--white); border: none; padding: 10px 22px;
+      border-radius: 50px; font-size: .88rem; font-weight: 600; cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    nav .nav-cta:hover { background: var(--orange-warm); transform: scale(1.04); }
+
+    /* ── LOGO SVG ── */
+    .logo-svg { width: 48px; height: 48px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('img/hero-pancakes.webp');
+      background-size: cover; background-position: center;
+      filter: brightness(.45);
+      z-index: 0;
+    }
+    .hero-video {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
+    }
+    .hero-video video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.42) saturate(1.1);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(59,34,18,.3) 0%, rgba(59,34,18,.65) 100%);
+      z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-badge {
+      display: inline-block; background: var(--orange); color: var(--white);
+      font-size: .78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { font-style: italic; color: var(--orange-warm); }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.88);
+      max-width: 560px; margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: var(--white);
+      padding: 16px 32px; border-radius: 50px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      box-shadow: 0 4px 24px rgba(212,119,42,.5);
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--orange-warm); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(255,255,255,.7); color: var(--white);
+      padding: 15px 32px; border-radius: 50px;
+      font-size: 1rem; font-weight: 600; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,.12); }
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 2; color: rgba(255,255,255,.5); font-size: .8rem;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* ── SOCIAL PROOF BAR ── */
+    .proof-bar {
+      background: var(--brown-dark);
+      padding: 28px 40px;
+    }
+    .proof-bar-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-around;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .proof-item { text-align: center; }
+    .proof-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--orange-warm);
+      display: block; line-height: 1;
+    }
+    .proof-label { font-size: .82rem; color: rgba(255,255,255,.7); margin-top: 4px; letter-spacing: .5px; }
+    .proof-divider { width: 1px; height: 50px; background: rgba(255,255,255,.15); }
+    .stars { color: #f4c542; font-size: 1.1rem; letter-spacing: 2px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block; background: var(--cream-dark); color: var(--orange);
+      font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--brown-dark); line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--text-light); max-width: 560px;
+      line-height: 1.7; margin-bottom: 56px;
+    }
+
+    /* ── MENU ── */
+    .menu-section { background: var(--white); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .menu-card {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--cream); box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 16px 60px rgba(59,34,18,.22); }
+    .menu-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .menu-card-body { padding: 22px 22px 26px; }
+    .menu-card-cat {
+      font-size: .72rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 6px;
+    }
+    .menu-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--brown-dark); margin-bottom: 8px; }
+    .menu-card p { font-size: .9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+    .menu-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .menu-price { font-weight: 700; font-size: 1.1rem; color: var(--brown-dark); }
+    .btn-card {
+      background: var(--orange); color: var(--white); border: none;
+      padding: 9px 20px; border-radius: 50px; font-size: .84rem; font-weight: 600;
+      text-decoration: none; cursor: pointer; transition: background .2s;
+    }
+    .btn-card:hover { background: var(--brown-mid); }
+
+    /* ── VALUE PROPS ── */
+    .values-section { background: var(--cream-dark); }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px;
+    }
+    .value-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(59,34,18,.08);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .value-icon { font-size: 2.2rem; }
+    .value-card h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--brown-dark); }
+    .value-card p { font-size: .9rem; color: var(--text-light); line-height: 1.65; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--brown-dark); }
+    .how-section .section-title { color: var(--white); }
+    .how-section .section-tag { background: rgba(255,255,255,.1); color: var(--orange-warm); }
+    .how-section .section-sub { color: rgba(255,255,255,.65); }
+    .steps-row { display: flex; gap: 0; flex-wrap: wrap; }
+    .step {
+      flex: 1; min-width: 240px;
+      padding: 40px 32px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; color: rgba(212,119,42,.25);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .step h4 { font-size: 1.2rem; color: var(--orange-warm); margin-bottom: 10px; font-weight: 600; }
+    .step p { font-size: .92rem; color: rgba(255,255,255,.65); line-height: 1.65; }
+    .step-arrow {
+      position: absolute; right: -16px; top: 50%; transform: translateY(-50%);
+      font-size: 1.5rem; color: var(--orange); z-index: 1;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section { background: var(--white); padding: 80px 24px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+    .gallery-item { overflow: hidden; border-radius: 8px; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.large { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img.tall { height: 300px; }
+    .gallery-item.large img { height: 100%; min-height: 400px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--cream); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .testi-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      box-shadow: 0 4px 20px rgba(59,34,18,.08);
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"'; font-family: 'Playfair Display', serif;
+      font-size: 5rem; color: var(--orange); opacity: .15;
+      position: absolute; top: 8px; left: 18px; line-height: 1;
+    }
+    .testi-stars { color: #f4c542; font-size: 1rem; margin-bottom: 12px; }
+    .testi-card p { font-size: .93rem; color: var(--text-light); line-height: 1.7; margin-bottom: 18px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--orange); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: var(--white);
+    }
+    .testi-name { font-weight: 600; font-size: .9rem; color: var(--brown-dark); }
+    .testi-meta { font-size: .78rem; color: var(--text-light); }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--cream-dark); }
+    .faq-list { max-width: 720px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(107,58,31,.15);
+      padding: 22px 0;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; gap: 16px;
+    }
+    .faq-question span {
+      font-size: 1rem; font-weight: 600; color: var(--brown-dark);
+    }
+    .faq-icon { font-size: 1.4rem; color: var(--orange); flex-shrink: 0; transition: transform .3s; }
+    .faq-answer {
+      font-size: .92rem; color: var(--text-light); line-height: 1.7;
+      padding-top: 12px; display: none;
+    }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* ── URGENCY ── */
+    .urgency-section {
+      background: linear-gradient(135deg, var(--orange) 0%, #b85a1a 100%);
+      padding: 70px 24px; text-align: center;
+    }
+    .urgency-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--white); margin-bottom: 16px;
+    }
+    .urgency-section p { font-size: 1.05rem; color: rgba(255,255,255,.85); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--brown-dark);
+      padding: 16px 36px; border-radius: 50px; font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: transform .15s, background .2s;
+    }
+    .btn-white:hover { background: var(--cream); transform: scale(1.04); }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--brown-dark); text-align: center;
+      padding: 100px 24px;
+    }
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--white); margin-bottom: 16px;
+    }
+    .final-cta p { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+    .final-cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: var(--white);
+      padding: 17px 36px; border-radius: 50px; font-size: 1rem; font-weight: 700;
+      text-decoration: none; box-shadow: 0 6px 28px rgba(37,211,102,.45);
+      transition: background .2s, transform .15s;
+    }
+    .btn-wa:hover { background: #1fb358; transform: translateY(-2px); }
+    .btn-tel {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid rgba(255,255,255,.5); color: var(--white);
+      padding: 16px 32px; border-radius: 50px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-tel:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+    .phone-big {
+      margin-top: 28px; font-size: 1.8rem; font-weight: 700;
+      color: var(--orange-warm); letter-spacing: 1px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a0c04; padding: 60px 40px 30px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    }
+    .footer-brand p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.7; margin-top: 14px; }
+    .footer-col h5 { font-size: .85rem; font-weight: 700; color: var(--orange-warm); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: .88rem; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--orange-warm); }
+    .footer-col .footer-info { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.8; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 18px; }
+    .footer-social-link {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); font-size: .95rem; text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .footer-social-link:hover { background: var(--orange); color: var(--white); }
+    .footer-bottom {
+      max-width: 1100px; margin: 40px auto 0;
+      border-top: 1px solid rgba(255,255,255,.08); padding-top: 22px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.35); }
+
+    /* ── MAP EMBED ── */
+    .map-container { margin-top: 16px; border-radius: 8px; overflow: hidden; }
+    .map-container iframe { display: block; width: 100%; height: 160px; border: none; }
+
+    /* ── FLOATING WA ── */
+    .floating-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25d366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 28px rgba(37,211,102,.5);
+      text-decoration: none; transition: transform .2s;
+    }
+    .floating-wa:hover { transform: scale(1.1); }
+    .floating-wa svg { width: 30px; height: 30px; fill: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      nav .nav-links { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.large { grid-column: span 2; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 20px; }
+      .proof-divider { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.large { grid-column: span 1; }
+      .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ FLOATING WHATSAPP ══ -->
+<a class="floating-wa" href="https://wa.me/593999617417?text=Hola%20Caff%C3%A9%20y%20Nata%2C%20me%20gustar%C3%ADa%20reservar%20una%20mesa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Logo inline SVG -->
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#3b2212" stroke="#d4772a" stroke-width="3"/>
+      <circle cx="50" cy="50" r="36" fill="#d4772a"/>
+      <text x="50" y="42" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="16" fill="#fff">caffé</text>
+      <text x="50" y="56" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="9" fill="#fff">&amp;</text>
+      <text x="50" y="68" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="15" fill="#fff">nata</text>
+      <!-- scalloped border dots -->
+      <circle cx="50" cy="4" r="2" fill="#d4772a"/>
+      <circle cx="71" cy="10" r="2" fill="#d4772a"/>
+      <circle cx="87" cy="27" r="2" fill="#d4772a"/>
+      <circle cx="95" cy="48" r="2" fill="#d4772a"/>
+      <circle cx="87" cy="69" r="2" fill="#d4772a"/>
+      <circle cx="71" cy="86" r="2" fill="#d4772a"/>
+      <circle cx="50" cy="95" r="2" fill="#d4772a"/>
+      <circle cx="29" cy="86" r="2" fill="#d4772a"/>
+      <circle cx="13" cy="69" r="2" fill="#d4772a"/>
+      <circle cx="5" cy="48" r="2" fill="#d4772a"/>
+      <circle cx="13" cy="27" r="2" fill="#d4772a"/>
+      <circle cx="29" cy="10" r="2" fill="#d4772a"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="5.5" fill="rgba(255,255,255,.7)" letter-spacing="2">cafetería</text>
+      <text x="50" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="4.5" fill="rgba(255,255,255,.7)" letter-spacing="1">Con sabor a tradición</text>
+    </svg>
+    <span style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);font-weight:700;letter-spacing:.5px;">Caffé &amp; Nata</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20reservar" target="_blank">Reservar mesa →</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <!-- Vídeo de fondo (stock gratuito Mixkit) — fallback a imagen si no carga -->
+  <div class="hero-video">
+    <video autoplay muted loop playsinline poster="img/hero-pancakes.webp">
+      <source src="img/hero-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Cafetería · Quito · Desde 2008</span>
+    <h1>El desayuno que <em>mereces</em><br/>te está esperando</h1>
+    <p>Más de 16 años endulzando las mañanas de Quito. Desayunos caseros, chocolates especiales y sabores que solo encontrarás aquí.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://wa.me/593999617417?text=Hola%20Caff%C3%A9%20y%20Nata%2C%20quiero%20reservar%20una%20mesa" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Reservar por WhatsApp
+      </a>
+      <a class="btn-secondary" href="#menu">Ver menú completo</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubrir más</span>
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<!-- ══ PROOF BAR ══ -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-item">
+      <span class="proof-num">1,742</span>
+      <span class="proof-label">Reseñas en Google</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <div class="stars">★★★★★</div>
+      <span class="proof-label">4.3 / 5 valoración media</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">16+</span>
+      <span class="proof-label">Años de tradición</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">2008</span>
+      <span class="proof-label">Fundada en Quito</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">7am</span>
+      <span class="proof-label">Abrimos cada día</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MENU ══ -->
+<section class="menu-section" id="menu">
+  <div class="section-inner">
+    <span class="section-tag">Nuestro Menú</span>
+    <h2 class="section-title">Sabores que cuentan historias</h2>
+    <p class="section-sub">Cada plato está preparado con ingredientes frescos y recetas que hemos perfeccionado durante 16 años. Algo para cada momento del día.</p>
+
+    <div class="menu-grid">
+
+      <!-- Desayunos -->
+      <div class="menu-card">
+        <img src="img/hero-pancakes.webp" alt="Desayuno completo con pancakes, huevos y jugo" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Desayunos</div>
+          <h3>Desayuno Completo</h3>
+          <p>Pancakes esponjosos con frutas frescas, huevos al gusto, jugo natural y café. La combinación perfecta para empezar el día con energía.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">desde $8</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20pedir%20el%20desayuno%20completo" target="_blank">Pedir ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chocolate Especial -->
+      <div class="menu-card">
+        <img src="img/chocolate.jpg" alt="Chocolate caliente" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Bebidas Calientes</div>
+          <h3>Chocolate Caliente</h3>
+          <p>Nuestro chocolate artesanal, preparado al momento. También disponible Chocolate Especial con Marshmallows o con Crema Chantilly.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">desde $4.50</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20de%20los%20chocolates" target="_blank">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sándwiches -->
+      <div class="menu-card">
+        <img src="img/sandwich.jpg" alt="Sándwich artesanal" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Sándwiches</div>
+          <h3>Sándwich Artesanal</h3>
+          <p>Pan horneado en casa relleno con ingredientes frescos, acompañado de papas fritas y jugo. Al mal tiempo, un buen sándwich.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">desde $7</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20info%20sobre%20los%20s%C3%A1ndwiches" target="_blank">Pedir ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bebidas Frías -->
+      <div class="menu-card">
+        <img src="img/macha-chai.jpg" alt="Macha y Té Chai Frío" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Bebidas Frías</div>
+          <h3>Macha & Té Chai Frío</h3>
+          <p>Bebidas especiales con una base de leche cremosa y hielo. Macha verde refrescante o Té Chai con especias. Perfectas para el calor de Quito.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">desde $5</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20me%20interesa%20saber%20sobre%20las%20bebidas%20fr%C3%ADas" target="_blank">Pedir ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Croissants y Pan -->
+      <div class="menu-card">
+        <img src="img/croissants.jpg" alt="Canasta de croissants y pan artesanal" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Panadería</div>
+          <h3>Croissants & Pan Artesanal</h3>
+          <p>Croissants dorados y panes horneados a diario en nuestra cocina. Acompáñalos con mermelada casera o mantequilla. Imposible resistirse.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">desde $2.50</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20%C2%BFtienen%20croissants%20disponibles%20hoy%3F" target="_blank">Consultar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limonada de Coco -->
+      <div class="menu-card">
+        <img src="img/limonada-coco.jpg" alt="Limonada de coco" loading="lazy" />
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Bebidas Especiales</div>
+          <h3>Limonada de Coco</h3>
+          <p>Nuestra limonada de coco es uno de los secretos mejor guardados de Caffé y Nata. Fresca, cremosa y con un toque tropical inconfundible.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">$5.50</span>
+            <a class="btn-card" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20probar%20la%20limonada%20de%20coco" target="_blank">Pedir ahora</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /menu-grid -->
+
+    <div style="text-align:center;margin-top:48px;">
+      <a class="btn-primary" href="https://wa.me/593999617417?text=Hola%2C%20me%20pueden%20enviar%20el%20men%C3%BA%20completo%3F" target="_blank" style="font-size:1rem;">
+        Ver menú completo por WhatsApp →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="gallery-section">
+  <div class="section-inner">
+    <span class="section-tag">Galería</span>
+    <h2 class="section-title" style="margin-bottom:40px;">Momentos que saben diferente</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="img/exterior.jpg" alt="Exterior Caffé y Nata" />
+      </div>
+      <div class="gallery-item">
+        <img class="tall" src="img/familia.jpg" alt="Familia desayunando en Caffé y Nata" />
+      </div>
+      <div class="gallery-item">
+        <img class="tall" src="img/choco-chantilly.jpg" alt="Chocolate especial con crema chantilly" />
+      </div>
+      <div class="gallery-item">
+        <img class="tall" src="img/croissant-colada.jpg" alt="Croissant decorado y colada morada" />
+      </div>
+      <div class="gallery-item">
+        <img class="tall" src="img/sandwich2.jpg" alt="Sándwich artesanal con papas" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VALUE PROPS ══ -->
+<section class="values-section" id="nosotros">
+  <div class="section-inner">
+    <span class="section-tag">¿Por qué elegirnos?</span>
+    <h2 class="section-title">Con sabor a tradición, desde 2008</h2>
+    <p class="section-sub">No somos una cafetería más. Somos parte de la historia de muchas familias en Quito.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">☕</div>
+        <h4>Café de Especialidad</h4>
+        <p>Trabajamos con granos seleccionados de origen ecuatoriano. Cada taza está preparada por baristas capacitados que cuidan cada detalle.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🍳</div>
+        <h4>Cocina Hecha en Casa</h4>
+        <p>Nuestras recetas son caseras y consistentes. Sin conservantes ni atajos. Lo que tu abuela prepararía si tuviera un restaurante.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h4>Ingredientes Frescos</h4>
+        <p>Jugos naturales, frutas de temporada y panes horneados a diario. La frescura se nota en cada mordida y cada sorbo.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">👨‍👩‍👧‍👦</div>
+        <h4>El Lugar Favorito de las Familias</h4>
+        <p>Más de 110 personas nos recomiendan activamente. Los domingos de desayuno en familia tienen un solo destino: Caffé y Nata.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⏰</div>
+        <h4>Abiertos desde las 7am</h4>
+        <p>Porque los mejores desayunos no esperan. Estamos listos cada mañana para recibirte con el café caliente y la mesa lista.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏆</div>
+        <h4>16 Años de Confianza</h4>
+        <p>1,742 reseñas en Google con 4.3 estrellas no mienten. Llevamos más de una década siendo el punto de encuentro favorito de Quito.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a class="btn-primary" href="https://wa.me/593999617417" target="_blank">Reserva tu mesa hoy →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section">
+  <div class="section-inner">
+    <span class="section-tag">¿Cómo funciona?</span>
+    <h2 class="section-title">Tu desayuno ideal en 3 pasos</h2>
+    <p class="section-sub">Simplificamos todo para que solo te preocupes de disfrutar.</p>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Reserva por WhatsApp</h4>
+        <p>Escríbenos con tu nombre, fecha y número de personas. En minutos confirmamos tu mesa. Sin formularios ni esperas.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Llega y disfruta</h4>
+        <p>Tu mesa te espera. Elige lo que más te apetezca de nuestro menú, preparado con ingredientes frescos al momento.</p>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Vive el momento</h4>
+        <p>Comparte con quienes más quieres. Nosotros nos encargamos de que cada segundo sea memorable, con sabor a tradición.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a class="btn-primary" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20reservar%20una%20mesa%20en%20Caff%C3%A9%20y%20Nata" target="_blank">Reservar ahora →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-section" id="testimonios">
+  <div class="section-inner">
+    <span class="section-tag">Reseñas Reales</span>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-sub">Más de 1,742 personas han compartido su experiencia en Google. Estas son algunas de sus historias.</p>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Llevamos años viniendo en familia cada domingo. Los pancakes son los mejores de Quito, y el ambiente es increíblemente acogedor. Nuestros hijos ya lo llaman 'el lugar especial del desayuno'."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MR</div>
+          <div>
+            <div class="testi-name">María Rodríguez</div>
+            <div class="testi-meta">Cliente desde 2015 · Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"El chocolate especial con marshmallows es una experiencia en sí mismo. El servicio es cálido y la atención al detalle se nota en cada mesa. Sin duda el mejor desayuno de la ciudad."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CA</div>
+          <div>
+            <div class="testi-name">Carlos Andrade</div>
+            <div class="testi-meta">Cliente recurrente · Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Fui por primera vez con mis amigas y desde entonces regreso al menos dos veces al mes. La limonada de coco es adictiva, y la calidad nunca ha bajado en todos estos años. Sitio de confianza."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SV</div>
+          <div>
+            <div class="testi-name">Sofía Vargas</div>
+            <div class="testi-meta">Cliente fiel · Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★☆</div>
+        <p>"Los sándwiches son enormes y deliciosos. El pan artesanal marca la diferencia. El único 'pero' es que los fines de semana hay cola, pero vale absolutamente la pena esperar."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JP</div>
+          <div>
+            <div class="testi-name">Javier Proaño</div>
+            <div class="testi-meta">TripAdvisor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Traje a mis padres de visita desde Guayaquil y quedaron encantados. El desayuno completo, el café y el trato del personal fueron impecables. Prometimos volver pronto. ¡Gracias, Caffé y Nata!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AM</div>
+          <div>
+            <div class="testi-name">Andrea Morales</div>
+            <div class="testi-meta">Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a class="btn-primary" href="https://wa.me/593999617417" target="_blank" style="background:var(--brown-mid);">Sé parte de nuestra historia →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <span class="section-tag">Preguntas Frecuentes</span>
+    <h2 class="section-title">Todo lo que necesitas saber</h2>
+    <p class="section-sub">Respondemos las dudas más comunes para que llegues tranquilo y disfrutes al máximo.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>¿Necesito reservar con antelación?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Los fines de semana y feriados recomendamos reservar con 24 horas de antelación, especialmente si son grupos de más de 4 personas. Entre semana generalmente hay disponibilidad inmediata. Puedes reservar directamente por WhatsApp al <strong>+593 99 961 7417</strong> y confirmamos en minutos.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>¿Cuál es el horario de atención?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Abrimos todos los días desde las <strong>7:00am hasta las 8:00pm</strong>. Los domingos es nuestro día más especial — muchas familias quiteñas tienen la tradición de desayunar con nosotros cada semana. También abrimos en feriados nacionales.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>¿Dónde están ubicados exactamente?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Estamos en <strong>La Colina y Av. Francisco de Orellana 26-177</strong>, Quito, Ecuador (código postal 170523). Es una zona de fácil acceso con estacionamiento disponible en los alrededores. Puedes buscar "Caffé y Nata" directamente en Google Maps.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>¿Tienen opciones para niños o alergias?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Sí, contamos con opciones adaptadas para los más pequeños y podemos ajustar preparaciones según alergias o intolerancias. Te recomendamos indicarnos tus necesidades al momento de hacer la reserva para prepararnos con anticipación y garantizar la mejor experiencia.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>¿Cuánto cuesta en promedio desayunar en Caffé y Nata?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          El precio medio por persona es de <strong>$10 a $15 USD</strong>, lo que incluye un desayuno completo con bebida. Los precios de los artículos individuales van desde $2.50 (pan artesanal) hasta $12 (desayuno completo premium). Una excelente relación calidad-precio para la experiencia que ofrecemos.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;">
+      <a class="btn-primary" href="https://wa.me/593999617417?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20el%20men%C3%BA" target="_blank" style="background:var(--brown-mid);">¿Más preguntas? Escríbenos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ URGENCY ══ -->
+<section class="urgency-section">
+  <div style="max-width:680px;margin:0 auto;">
+    <h2>Los domingos se llenan rápido ⏰</h2>
+    <p>Nuestros desayunos familiares del domingo son los más solicitados. Las mesas se agotan antes de las 9am. Asegura la tuya con una reserva rápida por WhatsApp — sin complicaciones, sin esperas.</p>
+    <a class="btn-white" href="https://wa.me/593999617417?text=Hola%2C%20quiero%20reservar%20mesa%20para%20el%20domingo" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Reservar mesa para el domingo
+    </a>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta" id="ubicacion">
+  <h2>¿Listo para el mejor desayuno<br/>de tu semana?</h2>
+  <p>Más de 1,700 quiteños ya lo descubrieron. Ahora es tu turno. Escríbenos y en minutos tienes tu mesa reservada.</p>
+  <div class="final-cta-btns">
+    <a class="btn-wa" href="https://wa.me/593999617417?text=Hola%20Caff%C3%A9%20y%20Nata%2C%20quiero%20reservar%20una%20mesa" target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <a class="btn-tel" href="tel:+593999617417">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Llamar ahora
+    </a>
+  </div>
+  <p class="phone-big">+593 99 961 7417</p>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <!-- Logo grande en footer -->
+      <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#3b2212" stroke="#d4772a" stroke-width="3"/>
+        <circle cx="50" cy="50" r="36" fill="#d4772a"/>
+        <text x="50" y="42" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="16" fill="#fff">caffé</text>
+        <text x="50" y="56" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="9" fill="#fff">&amp;</text>
+        <text x="50" y="68" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="15" fill="#fff">nata</text>
+        <circle cx="50" cy="4" r="2" fill="#d4772a"/>
+        <circle cx="71" cy="10" r="2" fill="#d4772a"/>
+        <circle cx="87" cy="27" r="2" fill="#d4772a"/>
+        <circle cx="95" cy="48" r="2" fill="#d4772a"/>
+        <circle cx="87" cy="69" r="2" fill="#d4772a"/>
+        <circle cx="71" cy="86" r="2" fill="#d4772a"/>
+        <circle cx="50" cy="95" r="2" fill="#d4772a"/>
+        <circle cx="29" cy="86" r="2" fill="#d4772a"/>
+        <circle cx="13" cy="69" r="2" fill="#d4772a"/>
+        <circle cx="5" cy="48" r="2" fill="#d4772a"/>
+        <circle cx="13" cy="27" r="2" fill="#d4772a"/>
+        <circle cx="29" cy="10" r="2" fill="#d4772a"/>
+        <text x="50" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="5.5" fill="rgba(255,255,255,.7)" letter-spacing="2">cafetería</text>
+        <text x="50" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="4.5" fill="rgba(255,255,255,.7)" letter-spacing="1">Con sabor a tradición</text>
+      </svg>
+      <p>Cafetería familiar en el corazón de Quito. Desde 2008 servimos desayunos y momentos que perduran. Con sabor a tradición.</p>
+      <div class="footer-socials">
+        <a class="footer-social-link" href="https://www.instagram.com/caffeynata/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a class="footer-social-link" href="https://www.tripadvisor.es/Restaurant_Review-g294308-d8757662-Reviews-Caffe_y_Nata-Quito_Pichincha_Province.html" target="_blank" rel="noopener" aria-label="TripAdvisor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="9" fill="white" font-weight="bold">TA</text></svg>
+        </a>
+        <a class="footer-social-link" href="https://wa.me/593999617417" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Menú</h5>
+      <ul>
+        <li><a href="#menu">Desayunos</a></li>
+        <li><a href="#menu">Chocolates Especiales</a></li>
+        <li><a href="#menu">Sándwiches</a></li>
+        <li><a href="#menu">Bebidas Frías</a></li>
+        <li><a href="#menu">Panadería</a></li>
+        <li><a href="#menu">Bebidas Calientes</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Cafetería</h5>
+      <ul>
+        <li><a href="#nosotros">Nuestra Historia</a></li>
+        <li><a href="#testimonios">Reseñas</a></li>
+        <li><a href="#faq">Preguntas Frecuentes</a></li>
+        <li><a href="https://www.instagram.com/caffeynata/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.tripadvisor.es/Restaurant_Review-g294308-d8757662-Reviews-Caffe_y_Nata-Quito_Pichincha_Province.html" target="_blank">TripAdvisor</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col" id="ubicacion-info">
+      <h5>Contacto</h5>
+      <div class="footer-info">
+        <p>📍 La Colina y Av. Francisco de Orellana 26-177<br/>Quito, Ecuador 170523</p>
+        <br/>
+        <p>📞 <a href="tel:+593999617417" style="color:inherit;">+593 99 961 7417</a></p>
+        <br/>
+        <p>🕐 Lun–Dom: 7:00am – 8:00pm</p>
+        <br/>
+        <p>⭐ 4.3/5 · 1,742 reseñas</p>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://maps.google.com/maps?q=La+Colina+y+Av.+Francisco+de+Orellana+26-177+Quito+Ecuador&output=embed"
+          title="Ubicación Caffé y Nata"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Caffé y Nata · Con sabor a tradición desde 2008 · Quito, Ecuador</p>
+    <p style="color:rgba(255,255,255,.25);">Hecho con ☕ para la mejor cafetería de Quito</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Smooth nav highlight
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const section = document.querySelector(href);
+        if (section) {
+          const top = section.offsetTop - 100;
+          const bottom = top + section.offsetHeight;
+          link.style.color = (scrollY >= top && scrollY < bottom) ? 'var(--orange-warm)' : '';
+          link.style.opacity = (scrollY >= top && scrollY < bottom) ? '1' : '';
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
